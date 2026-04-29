@@ -45,6 +45,13 @@ class ProjectService:
                 detail="Project key already exists",
             )
 
+        # Validate description is provided and meets minimum length
+        if not project_data.description or len(project_data.description.strip()) < 50:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Project description is required (minimum 50 characters)",
+            )
+
         # Create project
         project = Project(
             name=project_data.name,

@@ -11,7 +11,7 @@ class ProjectBase(BaseModel):
 
     name: str = Field(..., min_length=1, max_length=100)
     key: str = Field(..., min_length=2, max_length=10, pattern=r"^[A-Z0-9]+$")
-    description: Optional[str] = None
+    description: str = Field(..., min_length=50, max_length=500)
 
 
 class ProjectCreate(ProjectBase):
